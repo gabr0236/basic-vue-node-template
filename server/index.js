@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 import express from "express";
 import * as dotenv from "dotenv";
+import cors from 'cors'
 
 import { someResourceRouter } from "./routes/some-resource/index.js";
 
@@ -9,7 +10,8 @@ dotenv.config();
 const app = express();
 
 // For parsing application/json
-app.use(express.json())
+app.use(express.json());
+app.use(cors());
 
 app.get('/', (req, res) => {
     res.status(200);
