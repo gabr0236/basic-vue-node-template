@@ -2,14 +2,18 @@
 import express from "express";
 import * as dotenv from "dotenv";
 import cors from 'cors'
+import mongoose from 'mongoose'
 
 import { someResourceRouter } from "./routes/some-resource/index.js";
 
 dotenv.config();
 
+const connectToDB = async () => mongoose.connect(process.env.MONGODB_URI);
+
+await connectToDB();
+
 const app = express();
 
-// For parsing application/json
 app.use(express.json());
 app.use(cors());
 
@@ -21,7 +25,6 @@ app.get('/', (req, res) => {
 app.use('/api',
 [
     someResourceRouter,
-    //Add routes here
 ])
 
 app.listen(process.env.EXPRESS_PORT, (error) => {
