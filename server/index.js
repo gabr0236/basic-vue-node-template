@@ -8,9 +8,9 @@ import { someResourceRouter } from "./routes/some-resource/index.js";
 
 dotenv.config();
 
-const connectToDB = async () => mongoose.connect(process.env.MONGODB_URI);
+// const connectToDB = async () => mongoose.connect(process.env.MONGODB_URI);
 
-await connectToDB();
+// await connectToDB();
 
 const app = express();
 
@@ -19,8 +19,13 @@ app.use(cors());
 
 app.get('/', (req, res) => {
     res.status(200);
-    res.send("Welcome to root URL of Server");
+    res.send("Server running...");
 });
+
+app.post('/chat', (req, res) => {
+    console.log(req.body);
+    res.send('Message received');
+})
 
 app.use('/api',
 [
