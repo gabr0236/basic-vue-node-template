@@ -4,7 +4,7 @@ import * as dotenv from "dotenv";
 import cors from 'cors'
 import mongoose from 'mongoose'
 
-import { someResourceRouter } from "./routes/some-resource/index.js";
+import { router } from "./routes/index.js";
 
 dotenv.config();
 
@@ -22,14 +22,9 @@ app.get('/', (req, res) => {
     res.send("Server running...");
 });
 
-app.post('/chat', (req, res) => {
-    console.log(req.body);
-    res.send('Message received');
-})
-
 app.use('/api',
 [
-    someResourceRouter,
+    router,
 ])
 
 app.listen(process.env.EXPRESS_PORT, (error) => {

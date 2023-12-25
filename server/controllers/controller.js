@@ -1,4 +1,4 @@
-import * as service from '../services/service.js';
+import {SomeResource} from "../database/someModel.js";
 
 const getAll = (req, res) => {
 	console.log('🥸');
@@ -15,10 +15,11 @@ const create = async (req, res) => {
 	const { name, color, nicknames } = req.body;
 
     console.log(name);
-    //TODO: validation
 
-	const model = await service.createSomeResource(name, color, nicknames);
+	const someResource = new SomeResource({ name, color, nicknames});
 
+	await someResource.save();
+	
     res.status(200).json(model);
 };
 
