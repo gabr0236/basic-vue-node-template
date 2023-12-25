@@ -6,11 +6,11 @@
 		>
 			TEST
 		</button>
-        <button
+        <buttonn
 			class="border-2 mt-4 border-red-300 rounded p-2 hover:bg-cyan-500 mr-4" @click="getResult2"
 		>
 			TEST2
-		</button>
+		</buttonn>
 		<div class="mt-5">
 			{{ result }}
 		</div>
