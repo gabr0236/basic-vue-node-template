@@ -8,9 +8,9 @@ import { router } from "./routes/index.js";
 
 dotenv.config();
 
-// const connectToDB = async () => mongoose.connect(process.env.MONGODB_URI);
+const connectToDB = async () => mongoose.connect(process.env.MONGODB_URI);
 
-// await connectToDB();
+await connectToDB();
 
 const app = express();
 
