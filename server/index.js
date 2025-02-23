@@ -4,13 +4,20 @@ import * as dotenv from "dotenv";
 import cors from 'cors'
 import mongoose from 'mongoose'
 
-import { router } from "./routes/index.js";
+import {router} from "./routes/index.js";
 
-dotenv.config();
+dotenv.config({path: '../.env'});
 
-const connectToDB = async () => mongoose.connect(process.env.MONGODB_URI);
+try {
 
-await connectToDB();
+    const connectToDB = async () => mongoose.connect(process.env.MONGODB_URI);
+
+    await connectToDB();
+} catch (error) {
+    console.log("Error occurred while connecting to the database. Did you forget to set your MONGODB_URI in the .env file?");
+    console.error(error);
+    process.exit();
+}
 
 const app = express();
 
@@ -23,9 +30,9 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api',
-[
-    router,
-])
+    [
+        router,
+    ])
 
 app.listen(process.env.EXPRESS_PORT, (error) => {
     if (error) {
